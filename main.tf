@@ -85,8 +85,7 @@ module "eks" {
 
   cluster_endpoint_public_access   = true
   attach_cluster_encryption_policy = false
-  create_iam_role                  = true #
-  #
+  create_iam_role                  = true
 
   cluster_addons = {
     coredns    = {}
@@ -95,7 +94,7 @@ module "eks" {
   }
 
   aws_auth_roles = [
-    #
+
   ]
 
   vpc_id     = module.vpc.vpc_id
@@ -104,8 +103,7 @@ module "eks" {
   eks_managed_node_groups = {
     default = {
       use_custom_launch_template = false
-      create_iam_role            = true #
-      #
+      create_iam_role            = true
 
       instance_types = var.k8s.instance_types
       capacity_type  = var.k8s.capacity_type
@@ -116,8 +114,8 @@ module "eks" {
       max_size     = var.k8s.max_size
       desired_size = var.k8s.desired_size
 
-      block_device_mappings = var.block_device_mappings
-      ebs_optimized         = var.ebs_optimized
+      block_device_mappings = {}
+      ebs_optimized         = true
 
       credit_specification = {
         cpu_credits = "standard"
